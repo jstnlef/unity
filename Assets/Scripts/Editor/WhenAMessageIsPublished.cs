@@ -1,4 +1,4 @@
-//#define USE_MiniJSON
+#define USE_MiniJSON
 using System;
 using PubNubMessaging.Core;
 using NUnit.Framework;

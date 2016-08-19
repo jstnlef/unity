@@ -1085,12 +1085,12 @@ namespace PubNubMessaging.Core
         /// This method should be called before init
         /// </summary>
         /// <value>The set game object.</value>
-        public static GameObject SetGameObject {
+        public static GameObject GameObject {
             get {
-                return PubnubUnity.SetGameObject;
+                return PubnubUnity.GameObject;
             }
             set {
-                PubnubUnity.SetGameObject = value;
+                PubnubUnity.GameObject = value;
             }
         }
 

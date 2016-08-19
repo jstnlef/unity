@@ -61,6 +61,10 @@ namespace PubNubMessaging.Core
             }
         }
 
+        // causes this function, and any arguments passed to it (such as string + string) to be compiled out
+        // if these flags aren't set. This prevents string allocations...
+        [System.Diagnostics.Conditional("SPEW_ALL")]
+        [System.Diagnostics.Conditional("SPEW_NOTIFICATION")]
         public static void WriteToLog (string logText, bool writeToLog)
         {
             if (writeToLog) {
@@ -111,8 +115,8 @@ namespace PubNubMessaging.Core
         {
         }
 
-        public PubnubClientError (int statusCode, PubnubErrorSeverity errorSeverity, bool isDotNetException, string message, 
-            Exception detailedDotNetException, PubnubMessageSource source, PubnubWebRequest pubnubWebRequest, 
+        public PubnubClientError (int statusCode, PubnubErrorSeverity errorSeverity, bool isDotNetException, string message,
+            Exception detailedDotNetException, PubnubMessageSource source, PubnubWebRequest pubnubWebRequest,
             PubnubWebResponse pubnubWebResponse, string description, List<ChannelEntity> channelEntitles)
             :this(statusCode, errorSeverity, isDotNetException, message, detailedDotNetException, source, pubnubWebRequest,
                 pubnubWebResponse, description, Helpers.GetNamesFromChannelEntities(channelEntitles, false),
@@ -120,8 +124,8 @@ namespace PubNubMessaging.Core
         {
         }
 
-        public PubnubClientError (int statusCode, PubnubErrorSeverity errorSeverity, bool isDotNetException, string message, 
-            Exception detailedDotNetException, PubnubMessageSource source, PubnubWebRequest pubnubWebRequest, 
+        public PubnubClientError (int statusCode, PubnubErrorSeverity errorSeverity, bool isDotNetException, string message,
+            Exception detailedDotNetException, PubnubMessageSource source, PubnubWebRequest pubnubWebRequest,
             PubnubWebResponse pubnubWebResponse, string description, string channels, string channelGroups)
         {
             _dateTimeGMT = DateTime.Now.ToUniversalTime ();
@@ -138,18 +142,18 @@ namespace PubNubMessaging.Core
             _description = description;
         }
 
-        public PubnubClientError (int statusCode, PubnubErrorSeverity errorSeverity, string message, 
-            PubnubMessageSource source, PubnubWebRequest pubnubWebRequest, PubnubWebResponse pubnubWebResponse, string description, 
+        public PubnubClientError (int statusCode, PubnubErrorSeverity errorSeverity, string message,
+            PubnubMessageSource source, PubnubWebRequest pubnubWebRequest, PubnubWebResponse pubnubWebResponse, string description,
             List<ChannelEntity> channelEntitles)
-            : this (statusCode, errorSeverity, false, message, null, source, pubnubWebRequest, pubnubWebResponse, description, channelEntitles) 
+            : this (statusCode, errorSeverity, false, message, null, source, pubnubWebRequest, pubnubWebResponse, description, channelEntitles)
         {
         }
 
-        public PubnubClientError (int statusCode, PubnubErrorSeverity errorSeverity, string message, 
-            PubnubMessageSource source, PubnubWebRequest pubnubWebRequest, PubnubWebResponse pubnubWebResponse, string description, 
+        public PubnubClientError (int statusCode, PubnubErrorSeverity errorSeverity, string message,
+            PubnubMessageSource source, PubnubWebRequest pubnubWebRequest, PubnubWebResponse pubnubWebResponse, string description,
             string channels, string channelGroups)
             : this (statusCode, errorSeverity, false, message, null, source, pubnubWebRequest, pubnubWebResponse, description
-                , channels, channelGroups) 
+                , channels, channelGroups)
         {
         }
 

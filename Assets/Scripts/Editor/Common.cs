@@ -1,5 +1,5 @@
-#define USE_JSONFX_UNITY_IOS
-//#define USE_MiniJSON
+//#define USE_JSONFX_UNITY_IOS
+#define USE_MiniJSON
 using System;
 using PubNubMessaging.Core;
 using System.Collections.Generic;
@@ -55,7 +55,7 @@ namespace PubNubMessaging.Tests
             return "UnityUnitTests_" + r.Next (100);
         }
 
-        public static List<ChannelEntity> CreateListOfChannelEntities<T>(bool channelGroup, bool channel, 
+        public static List<ChannelEntity> CreateListOfChannelEntities<T>(bool channelGroup, bool channel,
             bool presence, bool awaitingConnectCallback,
             Action<T> userCallback, Action<T> connectCallback,
             Action<T> wildcardPresenceCallback, Action<T> disconnectCallback
@@ -65,45 +65,45 @@ namespace PubNubMessaging.Tests
             dictSM.Add("k2","v2");
 
 
-            ChannelEntity ce1 = Helpers.CreateChannelEntity<T>("ch1", false, false, dictSM, 
+            ChannelEntity ce1 = Helpers.CreateChannelEntity<T>("ch1", false, false, dictSM,
             userCallback, connectCallback,
-            Common.ErrorCallback, disconnectCallback, 
+            Common.ErrorCallback, disconnectCallback,
             wildcardPresenceCallback);
 
             var dictSM2 = new Dictionary<string, object>();
             dictSM2.Add("k3","v3");
             dictSM2.Add("k4","v4");
 
-            ChannelEntity ce2 = Helpers.CreateChannelEntity<T>("ch2", false, false, dictSM2, 
+            ChannelEntity ce2 = Helpers.CreateChannelEntity<T>("ch2", false, false, dictSM2,
             userCallback, connectCallback,
-            Common.ErrorCallback, disconnectCallback, 
+            Common.ErrorCallback, disconnectCallback,
             wildcardPresenceCallback);
 
             var dictSM3 = new Dictionary<string, object>();
             dictSM3.Add("k5","v5");
             dictSM3.Add("k6","v6");
 
-            ChannelEntity ce3 = Helpers.CreateChannelEntity<T>("cg1", false, true, dictSM3, 
+            ChannelEntity ce3 = Helpers.CreateChannelEntity<T>("cg1", false, true, dictSM3,
             userCallback, connectCallback,
-            Common.ErrorCallback, disconnectCallback, 
+            Common.ErrorCallback, disconnectCallback,
             wildcardPresenceCallback);
 
             var dictSM4 = new Dictionary<string, object>();
             dictSM4.Add("k7","v7");
             dictSM4.Add("k8","v8");
 
-            ChannelEntity ce4 = Helpers.CreateChannelEntity<T>("cg2", false, true, dictSM4, 
+            ChannelEntity ce4 = Helpers.CreateChannelEntity<T>("cg2", false, true, dictSM4,
             userCallback, connectCallback,
-            Common.ErrorCallback, disconnectCallback, 
+            Common.ErrorCallback, disconnectCallback,
             wildcardPresenceCallback);
 
             var dictSM5 = new Dictionary<string, object>();
             dictSM5.Add("k7","v7");
             dictSM5.Add("k8","v8");
 
-            ChannelEntity ce5 = Helpers.CreateChannelEntity<T>("cg2-pnpres", false, true, dictSM5, 
+            ChannelEntity ce5 = Helpers.CreateChannelEntity<T>("cg2-pnpres", false, true, dictSM5,
             userCallback, connectCallback,
-            Common.ErrorCallback, disconnectCallback, 
+            Common.ErrorCallback, disconnectCallback,
             wildcardPresenceCallback);
 
 
@@ -111,9 +111,9 @@ namespace PubNubMessaging.Tests
             dictSM6.Add("k7","v7");
             dictSM6.Add("k8","v8");
 
-            ChannelEntity ce6 = Helpers.CreateChannelEntity<T>("ch2-pnpres", false, false, dictSM6, 
+            ChannelEntity ce6 = Helpers.CreateChannelEntity<T>("ch2-pnpres", false, false, dictSM6,
             userCallback, connectCallback,
-            Common.ErrorCallback, disconnectCallback, 
+            Common.ErrorCallback, disconnectCallback,
             wildcardPresenceCallback);
 
 
@@ -121,18 +121,18 @@ namespace PubNubMessaging.Tests
             dictSM7.Add("k7","v7");
             dictSM7.Add("k8","v8");
 
-            ChannelEntity ce7 = Helpers.CreateChannelEntity<T>("ch7", true, false, dictSM7, 
+            ChannelEntity ce7 = Helpers.CreateChannelEntity<T>("ch7", true, false, dictSM7,
             userCallback, connectCallback,
-            Common.ErrorCallback, disconnectCallback, 
+            Common.ErrorCallback, disconnectCallback,
             wildcardPresenceCallback);
 
             var dictSM8 = new Dictionary<string, object>();
             dictSM8.Add("k7","v7");
             dictSM8.Add("k8","v8");
 
-            ChannelEntity ce8 = Helpers.CreateChannelEntity<T>("cg8", true, true, dictSM8, 
+            ChannelEntity ce8 = Helpers.CreateChannelEntity<T>("cg8", true, true, dictSM8,
             userCallback, connectCallback,
-            Common.ErrorCallback, disconnectCallback, 
+            Common.ErrorCallback, disconnectCallback,
             wildcardPresenceCallback);
 
             List<ChannelEntity> lstCE = new List<ChannelEntity>();
@@ -174,17 +174,17 @@ namespace PubNubMessaging.Tests
             dictSM.Add("k", "subscribeKey");
             dictSM.Add("s", "10");
 
-            var dictOT = new Dictionary<string, object>(); 
+            var dictOT = new Dictionary<string, object>();
             dictOT.Add("t", 14685037252884276);
             dictOT.Add("r", "west");
             dictSM.Add("o", dictOT);
 
-            var dictPM = new Dictionary<string, object>(); 
+            var dictPM = new Dictionary<string, object>();
             dictPM.Add("t", 14685037252884348);
             dictPM.Add("r", "east");
             dictSM.Add("p", dictPM);
 
-            var dictU = new Dictionary<string, object>(); 
+            var dictU = new Dictionary<string, object>();
             dictU.Add("region", "north");
             dictSM.Add("u", dictU);
             return dictSM;
@@ -205,14 +205,14 @@ namespace PubNubMessaging.Tests
         public void WaitForResponse (int countdownSeconds = 30)
         {
             Timer timer = new Timer ();
-            DateTime start = DateTime.UtcNow; 
-            DateTime endTime = start.AddSeconds (countdownSeconds); 
+            DateTime start = DateTime.UtcNow;
+            DateTime endTime = start.AddSeconds (countdownSeconds);
             timer.Enabled = true;
             timer.Start ();
             timer.Elapsed += delegate(object sender, ElapsedEventArgs e) {
                 TimeSpan remainingTime = endTime - DateTime.UtcNow;
                 if (remainingTime < TimeSpan.Zero) {
-                    timer.Enabled = false; 
+                    timer.Enabled = false;
                     DeliveryStatus = true;
                 }
             };
@@ -345,7 +345,7 @@ namespace PubNubMessaging.Tests
             #endif
             return retMessage;
         }
-                
+
         #if (USE_MiniJSON)
         /// <summary>
         /// Serialize the specified message using either JSONFX or NEWTONSOFT.JSON.
@@ -374,7 +374,7 @@ namespace PubNubMessaging.Tests
                 @"\\u(?<Value>[a-zA-Z0-9]{4})",
                 m => {
                     return ((char)int.Parse (m.Groups ["Value"].Value, NumberStyles.HexNumber)).ToString ();
-                }     
+                }
             );
         }
 
@@ -426,7 +426,7 @@ namespace PubNubMessaging.Tests
     }
 
     /// <summary>
-    /// Custom class for testing the encryption and decryption 
+    /// Custom class for testing the encryption and decryption
     /// </summary>
     class CustomClass
     {

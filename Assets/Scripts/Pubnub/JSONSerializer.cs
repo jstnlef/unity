@@ -1,5 +1,5 @@
 ﻿#if((!USE_JSONFX_UNITY_IOS) && (!USE_MiniJSON))
-#define USE_JSONFX_UNITY_IOS
+#define USE_MiniJSON
 #endif
 
 #if (USE_JSONFX_UNITY_IOS)
@@ -66,7 +66,7 @@ namespace PubNubMessaging.Core
 
         public string SerializeToJsonString (object objectToSerialize)
         {
-            string json = JsonWriter.Serialize (objectToSerialize); 
+            string json = JsonWriter.Serialize (objectToSerialize);
             return PubnubCryptoBase.ConvertHexToUnicodeChars (json);
         }
 
@@ -117,7 +117,7 @@ namespace PubNubMessaging.Core
 
         public string SerializeToJsonString (object objectToSerialize)
         {
-            string json = Json.Serialize (objectToSerialize); 
+            string json = Json.Serialize (objectToSerialize);
             return PubnubCryptoBase.ConvertHexToUnicodeChars (json);
         }
 
